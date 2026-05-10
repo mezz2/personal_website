@@ -1,11 +1,7 @@
-import BasketballHero from "@/components/basketball-hero";
-import ProjectsSection from "@/components/projects-section";
-
 export default function Home() {
   return (
-    <main>
-      <BasketballHero />
-      <ProjectsSection />
+    <main className="min-h-screen flex items-center justify-center">
+      <span className="font-mono text-gray-600 tracking-widest text-sm">// HOME</span>
     </main>
   );
 }
