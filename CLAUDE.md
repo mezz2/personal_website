@@ -13,7 +13,7 @@ The goal of Hoops Lab is educational: Riley uses real NBA datasets to build data
 - **Framework:** Next.js (App Router) + TypeScript
 - **Styling:** Tailwind CSS
 - **Font:** Geist Mono (monospace throughout — no sans-serif)
-- **Dark mode only.** No light mode. Background is `#0a0a0a`.
+- **Dark mode only.** No light mode. Background is `#0a0a0a`. **Exception:** the hero canvas (`basketball-hero.tsx`) uses a bright Hoop Land arcade palette — this is intentional and should not be darkened.
 
 ## Design system
 
@@ -45,28 +45,28 @@ components/
 
 ## Hero animation (`basketball-hero.tsx`)
 
-A canvas-based ASCII pixel-art animation. All sprites are rendered with `fillText("█", ...)` in Courier New on an HTML5 canvas element. Character cells are square (`ch = cw`).
+A canvas-based pixel-art animation. All sprites are rendered with `fillRect` blocks (18px cells). Hoop Land arcade aesthetic: bright hardwood court, dark arena ceiling, tiered bleachers with crowd silhouettes in blue/orange.
 
 **Animation loop (phases):**
-1. `catch_pause` — player holds ball at waist (ARM_DOWN)
-2. `wind_up` — arm raises through 3 states: ARM_DOWN → ARM_WIND → ARM_RAISED
-3. `shooting` — ball arcs across screen toward hoop (~1900ms)
-4. `at_hoop` — ball either swishes through net or bounces off rim (~250ms)
-5. `falling` — ball falls with gravity to the trampoline contact point (~680ms)
-6. `returning` — ball bounces off trampoline, then two floor bounces, then to player hand (~2500ms)
+1. `catch_pause` — shooter holds ball (ARM_DOWN), rebounder idles
+2. `wind_up` — shooter arm raises: ARM_DOWN → ARM_WIND → ARM_UP
+3. `shooting` — ball arcs toward hoop (~1800ms)
+4. `at_hoop` — swish through net or kick off rim (~300ms)
+5. `falling` — ball falls toward rebounder (~680ms)
+6. `rb_catch` — rebounder catches overhead (~280ms)
+7. `rb_dribble` — rebounder dribbles 1–2 times (~480–960ms)
+8. `rb_pass` — rebounder winds up and chest-passes left (~380ms)
+9. `ball_return` — ball arcs back to shooter hand (~650ms)
 
-**55% swish rate**, decided at the start of each `catch_pause`. On a miss, ball kicks off the front rim and falls to the trampoline. On a swish, net pixels wave horizontally.
+**55% swish rate**, decided at the start of each `catch_pause`. Net pixels wave on swish. Ball has full squash & stretch: stretches in arc, squashes on floor contact. Shooter has anticipation dip before wind-up.
 
 **Sprites:**
-- `BODY` — static player body (head, jersey, shorts, legs, shoes). Eyes are baked into BODY at `[2,3]` and `[3,3]` as dark pixels — never move with the arm.
-- `ARM_RAISED / ARM_WIND / ARM_DOWN` — three arm states; arm always originates from the shoulder at col 5, row 4-5, never from the head.
-- `HOOP_BODY + NET` — backboard (white), rim (red), net (gray), pole. Net rendered separately for wave effect.
-- `TRAMP_SURFACE + TRAMP_SUPPORT` — `/`-shaped trampoline below-left of hoop. Surface compresses and springs back on ball impact; supports are always fixed.
+- `BODY` — shared chibi body (big head ~40% of height, sleeveless blue jersey, stubby limbs). Symmetric, used for both players.
+- `S_ARM_DOWN / S_ARM_WIND / S_ARM_UP` — shooter arm states (extend RIGHT).
+- `R_ARM_IDLE / R_ARM_UP / R_ARM_DRIB / R_ARM_PASS` — rebounder arm states (extend LEFT via negative col offsets).
+- `HOOP_BODY + NET` — backboard, rim, net, pole. Net rendered separately for wave effect.
 
-**Returning trajectory (multi-bounce):**
-- T=0 → T1 (0.33): trampoline → first floor bounce (big arc)
-- T1 → T2 (0.64): floor → second floor bounce (medium arc)
-- T2 → 1.0: floor → player hand (small arc)
+**No trampoline.** Ball return is handled by the rebounder character.
 
 ## Content
 
@@ -83,8 +83,7 @@ A canvas-based ASCII pixel-art animation. All sprites are rendered with `fillTex
 - No comments in code unless the WHY is non-obvious.
 - No `console.log` left in production code.
 - Prefer editing existing files over creating new ones.
-- Do not add light mode support — this site is intentionally dark-only.
 - Do not change the monospace-everywhere design — it is intentional.
 - When adding new pages or sections, follow the existing card/border aesthetic: `border border-white/10`, `bg-white/[0.02]`, orange accent on hover.
-- New canvas sprites should use `█` (full block) characters for pixel-art consistency.
+- New canvas sprites use `fillRect` pixel blocks (not `fillText`). Sprites are `[col, row, color][]` arrays.
 - The animation loop in `basketball-hero.tsx` uses refs (not state) for all mutable values to avoid React re-render overhead inside `requestAnimationFrame`.
