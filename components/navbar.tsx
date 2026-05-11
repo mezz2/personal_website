@@ -57,6 +57,10 @@ export default function Navbar() {
         </div>
       </div>
 
+      <Link href="/someday" className={linkCls}>
+        SOMEDAY
+      </Link>
+
       <a
         href="https://github.com/mezz2"
         target="_blank"
