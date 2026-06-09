@@ -22,7 +22,7 @@ export default async function SomedayItemPage({ params }: { params: Promise<{ sl
       </Link>
 
       <div
-        className="rounded-2xl p-10 mb-10 border border-white/5"
+        className="rounded-2xl p-6 sm:p-10 mb-10 border border-white/5"
         style={{ backgroundColor: item.color }}
       >
         <h1 className="font-mono font-bold text-white tracking-widest text-xl leading-snug">

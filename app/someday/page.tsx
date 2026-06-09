@@ -4,8 +4,8 @@ import { somedayItems, type CardSize } from "@/data/someday";
 const sizeClasses: Record<CardSize, string> = {
   small: "col-span-1 row-span-1",
   wide: "col-span-1 sm:col-span-2 row-span-1",
-  tall: "col-span-1 row-span-2",
-  large: "col-span-1 sm:col-span-2 row-span-2",
+  tall: "col-span-1 row-span-1 sm:row-span-2",
+  large: "col-span-1 sm:col-span-2 row-span-1 sm:row-span-2",
 };
 
 export default function SomedayPage() {

@@ -12,11 +12,11 @@ export default function BasketballHero() {
 
       {/* Centered overlay */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="flex flex-col items-center gap-5 bg-black/60 px-12 py-8 -translate-y-8">
+        <div className="flex flex-col items-center gap-5 bg-black/60 px-6 sm:px-12 py-8 -translate-y-8">
 
           {/* Title */}
           <h1
-            className="text-white text-5xl sm:text-6xl text-center leading-tight"
+            className="text-white text-3xl sm:text-4xl lg:text-6xl text-center leading-tight"
             style={{
               fontFamily: "var(--font-press-start)",
               textShadow:
