@@ -85,3 +85,15 @@ body {
 @media (prefers-reduced-motion: reduce){
   [class^="hl-"],[style*="animation"]{animation:none !important;}
 }
+
+@keyframes books-mote {
+  0%   { transform: translateY(0) scale(.8); opacity: 0; }
+  12%  { opacity: .55; }
+  88%  { opacity: .5; }
+  100% { transform: translateY(-130px) scale(1); opacity: 0; }
+}
+
+@keyframes books-sway {
+  0%, 100% { transform: rotate(-1deg); }
+  50%       { transform: rotate(1deg); }
+}
