@@ -58,3 +58,30 @@ body {
   height: 100%;
   object-fit: cover;
 }
+
+/* ---- Hoops Lab keyframes ---- */
+@keyframes hl-scan{0%{transform:translateY(-130%);}100%{transform:translateY(130%);}}
+@keyframes hl-blink{0%,48%{opacity:1;}49%,100%{opacity:0;}}
+@keyframes hl-cue{0%,100%{transform:translateY(0);opacity:.55;}50%{transform:translateY(7px);opacity:1;}}
+@keyframes hl-boot{0%,68%{opacity:1;}100%{opacity:0;visibility:hidden;}}
+@keyframes hl-barfill{0%{width:0%;}66%{width:100%;}100%{width:100%;}}
+@keyframes hl-bootflash{0%,40%{opacity:0;}50%,70%{opacity:1;}80%,100%{opacity:0;}}
+@keyframes hl-spinslow{to{transform:rotate(360deg);}}
+@keyframes hl-spinrev{to{transform:rotate(-360deg);}}
+@keyframes hl-drift{from{background-position:0 0;}to{background-position:72px 72px;}}
+@keyframes hl-twinkle{0%,100%{opacity:.12;transform:translateY(0) scale(.8);}50%{opacity:.7;transform:translateY(-16px) scale(1);}}
+@keyframes hl-crowd{0%,100%{transform:translateY(0);}50%{transform:translateY(-3px);}}
+
+/* ---- Hoops Lab hover helpers ---- */
+.hl-btn-primary{transition:transform .12s ease,box-shadow .12s ease;}
+.hl-btn-primary:hover{transform:translate(2px,2px);box-shadow:3px 3px 0 #7a2e0a !important;}
+.hl-btn-ghost{transition:background .15s ease,color .15s ease;}
+.hl-btn-ghost:hover{background:#fb8c2e;color:#0a0a10 !important;}
+.hl-footer-link{transition:background .15s ease;}
+.hl-footer-link:hover{background:rgba(249,115,22,.12);}
+.hl-card{transition:opacity .7s ease,transform .7s ease,box-shadow .3s ease;}
+.hl-card:hover{transform:translateY(-4px) !important;box-shadow:0 24px 46px -30px rgba(80,60,20,.55) !important;}
+
+@media (prefers-reduced-motion: reduce){
+  [class^="hl-"],[style*="animation"]{animation:none !important;}
+}
