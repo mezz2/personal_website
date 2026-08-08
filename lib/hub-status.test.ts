@@ -24,8 +24,8 @@ describe("booksStatusLabel", () => {
 });
 
 describe("projectsCapacityLabel", () => {
-  it("formats the live capacity rule line", () => {
-    expect(projectsCapacityLabel(1)).toBe("1 LIVE · ROOM FOR MORE");
-    expect(projectsCapacityLabel(3)).toBe("3 LIVE · ROOM FOR MORE");
+  it("formats the live capacity rule line in sentence case", () => {
+    expect(projectsCapacityLabel(1)).toBe("1 lab live · more in the works");
+    expect(projectsCapacityLabel(3)).toBe("3 labs live · more in the works");
   });
 });

@@ -207,16 +207,16 @@ export default function BasketballHero() {
   }, []);
 
   return (
-    <section ref={rootRef} style={s("position:relative;min-height:100vh;background:radial-gradient(125% 90% at 50% -8%,#191922 0%,#0a0a10 60%,#06060a 100%);overflow:hidden;display:flex;flex-direction:column;font-family:var(--font-plex-sans),sans-serif")}>
+    <section ref={rootRef} style={s("position:relative;min-height:100vh;background:radial-gradient(125% 90% at 50% -8%,#191922 0%,#0a0a10 60%,#06060a 100%);overflow:hidden;display:flex;flex-direction:column;font-family:var(--font-serif)")}>
       {/* arcade boot overlay */}
       <div id="boot" style={s("position:fixed;inset:0;z-index:90;background:#06060a;display:flex;flex-direction:column;align-items:center;justify-content:center;animation:hl-boot 2.7s ease-in forwards")}>
         <div style={s("position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(0,0,0,0) 0px,rgba(0,0,0,0) 2px,rgba(0,0,0,.5) 3px,rgba(0,0,0,0) 4px);pointer-events:none")} />
-        <div style={s("font-family:var(--font-press-start),monospace;font-size:clamp(18px,4vw,34px);color:#fb8c2e;text-shadow:3px 3px 0 #7a2e0a;text-align:center;line-height:1.3")}>HOOPS<br />LAB</div>
+        <div style={s("font-family:var(--font-pixel);font-size:clamp(18px,4vw,34px);color:#fb8c2e;text-shadow:3px 3px 0 #7a2e0a;text-align:center;line-height:1.3")}>HOOPS<br />LAB</div>
         <div style={s("margin-top:34px;width:min(260px,60vw);height:14px;border:2px solid #fb8c2e;padding:2px")}>
           <div style={s("height:100%;background:#fb8c2e;animation:hl-barfill 2.7s steps(20,end) forwards")} />
         </div>
-        <div style={s("margin-top:18px;font-family:var(--font-press-start),monospace;font-size:9px;color:#7a6a4a;letter-spacing:.1em")}>LOADING SEASON DATA...</div>
-        <div style={s("margin-top:22px;font-family:var(--font-press-start),monospace;font-size:11px;color:#fb8c2e;animation:hl-bootflash 2.7s ease forwards")}>INSERT COIN</div>
+        <div style={s("margin-top:18px;font-family:var(--font-pixel);font-size:9px;color:#7a6a4a;letter-spacing:.1em")}>LOADING SEASON DATA...</div>
+        <div style={s("margin-top:22px;font-family:var(--font-pixel);font-size:11px;color:#fb8c2e;animation:hl-bootflash 2.7s ease forwards")}>INSERT COIN</div>
       </div>
 
       {/* CRT + glow overlays */}
@@ -242,19 +242,19 @@ export default function BasketballHero() {
       <div style={s("position:absolute;left:0;right:0;bottom:0;height:60px;z-index:1;background:repeating-linear-gradient(90deg,rgba(249,115,22,.07) 0 5px,transparent 5px 13px),repeating-linear-gradient(90deg,rgba(255,255,255,.03) 0 13px,transparent 13px 26px);mask-image:linear-gradient(transparent,#000);-webkit-mask-image:linear-gradient(transparent,#000);animation:hl-crowd 4s ease-in-out infinite;pointer-events:none")} />
 
       {/* top HUD */}
-      <div style={s("position:relative;z-index:6;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:clamp(20px,3.5vw,34px) clamp(20px,5vw,64px);font-family:var(--font-press-start),monospace;font-size:9px;letter-spacing:.1em;color:#5b5b6b")}>
+      <div style={s("position:relative;z-index:6;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:clamp(20px,3.5vw,34px) clamp(20px,5vw,64px);font-family:var(--font-pixel);font-size:9px;letter-spacing:.1em;color:#5b5b6b")}>
         <span style={s("color:#fb8c2e")}>&#9679; HOOPS LAB</span>
         <span>1P&nbsp;&nbsp;HI 999999&nbsp;&nbsp;CREDIT 01</span>
       </div>
 
       {/* title block */}
       <div style={s("position:relative;z-index:6;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:10px clamp(20px,5vw,64px) 0")}>
-        <h1 id="hero-title" style={s("font-family:var(--font-press-start),monospace;font-size:clamp(38px,8vw,78px);line-height:1.12;margin:0;color:#fb8c2e;text-shadow:3px 0 #7a2e0a,-3px 0 #7a2e0a,0 3px #7a2e0a,0 -3px #7a2e0a,3px 3px #7a2e0a,-3px 3px #7a2e0a,3px -3px #7a2e0a,-3px -3px #7a2e0a,7px 7px rgba(0,0,0,.5)")}>HOOPS<br />LAB</h1>
-        <p style={s("font-family:var(--font-press-start),monospace;font-size:clamp(9px,1.5vw,12px);line-height:2.1;color:#f3b27a;margin:clamp(24px,4vw,36px) 0 0")}>BUILDING DATA SCIENCE SKILLS<br />THROUGH MY PASSION FOR THE NBA</p>
-        <div style={s("font-family:var(--font-press-start),monospace;font-size:clamp(10px,1.6vw,13px);color:#fb8c2e;margin-top:clamp(30px,4.5vw,42px);animation:hl-blink 1.1s steps(1) infinite")}>&#9654; PRESS START</div>
+        <h1 id="hero-title" style={s("font-family:var(--font-pixel);font-size:clamp(38px,8vw,78px);line-height:1.12;margin:0;color:#fb8c2e;text-shadow:3px 0 #7a2e0a,-3px 0 #7a2e0a,0 3px #7a2e0a,0 -3px #7a2e0a,3px 3px #7a2e0a,-3px 3px #7a2e0a,3px -3px #7a2e0a,-3px -3px #7a2e0a,7px 7px rgba(0,0,0,.5)")}>HOOPS<br />LAB</h1>
+        <p style={s("font-family:var(--font-pixel);font-size:clamp(9px,1.5vw,12px);line-height:2.1;color:#f3b27a;margin:clamp(24px,4vw,36px) 0 0")}>BUILDING DATA SCIENCE SKILLS<br />THROUGH MY PASSION FOR THE NBA</p>
+        <div style={s("font-family:var(--font-pixel);font-size:clamp(10px,1.6vw,13px);color:#fb8c2e;margin-top:clamp(30px,4.5vw,42px);animation:hl-blink 1.1s steps(1) infinite")}>&#9654; PRESS START</div>
         <div style={s("display:flex;gap:clamp(14px,2vw,22px);margin-top:clamp(30px,4.5vw,40px);flex-wrap:wrap;justify-content:center")}>
-          <a className="hl-btn-primary" href="#projects" style={s("font-family:var(--font-press-start),monospace;font-size:clamp(9px,1.3vw,11px);color:#0a0a10;background:#fb8c2e;padding:15px 24px;box-shadow:5px 5px 0 #7a2e0a;text-decoration:none")}>VIEW PROJECTS</a>
-          <a className="hl-btn-ghost" href="https://github.com/mezz2" target="_blank" rel="noopener noreferrer" style={s("font-family:var(--font-press-start),monospace;font-size:clamp(9px,1.3vw,11px);color:#fb8c2e;border:3px solid #fb8c2e;padding:12px 24px;box-shadow:5px 5px 0 rgba(249,115,22,.25);text-decoration:none")}>GITHUB / MEZZ2</a>
+          <a className="hl-btn-primary" href="#projects" style={s("font-family:var(--font-pixel);font-size:clamp(9px,1.3vw,11px);color:#0a0a10;background:#fb8c2e;padding:15px 24px;box-shadow:5px 5px 0 #7a2e0a;text-decoration:none")}>VIEW PROJECTS</a>
+          <a className="hl-btn-ghost" href="https://github.com/mezz2" target="_blank" rel="noopener noreferrer" style={s("font-family:var(--font-pixel);font-size:clamp(9px,1.3vw,11px);color:#fb8c2e;border:3px solid #fb8c2e;padding:12px 24px;box-shadow:5px 5px 0 rgba(249,115,22,.25);text-decoration:none")}>GITHUB / MEZZ2</a>
         </div>
       </div>
 
@@ -273,7 +273,7 @@ export default function BasketballHero() {
           <div style={s("position:absolute;left:27px;top:0;width:34px;height:34px;background:#caa07a;border:3px solid #4a2c14;border-radius:5px")} />
           <div style={s("position:absolute;left:24px;top:3px;width:40px;height:9px;background:#fb8c2e")} />
           <div style={s("position:absolute;left:16px;top:36px;width:56px;height:60px;background:#fb8c2e;border:4px solid #7a2e0a")} />
-          <div style={s("position:absolute;left:34px;top:46px;width:20px;height:26px;font-family:var(--font-press-start),monospace;font-size:15px;color:#7a2e0a;text-align:center;line-height:26px")}>2</div>
+          <div style={s("position:absolute;left:34px;top:46px;width:20px;height:26px;font-family:var(--font-pixel);font-size:15px;color:#7a2e0a;text-align:center;line-height:26px")}>2</div>
           <div id="hs-arm-l" style={s("position:absolute;left:4px;top:42px;width:13px;height:46px;background:#caa07a;border:2px solid #4a2c14;border-radius:4px;transform-origin:50% 8%;will-change:transform")} />
           <div id="hs-arm-r" style={s("position:absolute;left:71px;top:42px;width:13px;height:46px;background:#caa07a;border:2px solid #4a2c14;border-radius:4px;transform-origin:50% 8%;will-change:transform")} />
           <div style={s("position:absolute;left:22px;top:94px;width:17px;height:52px;background:#1b1b24;border:2px solid #050507")} />
@@ -289,11 +289,11 @@ export default function BasketballHero() {
             <div style={s("position:absolute;left:-22%;top:6%;width:144%;height:88%;border:4px solid #7a2e0a;border-radius:50%;opacity:.45")} />
           </div>
         </div>
-        <div id="hs-pop" style={s("position:absolute;left:0;top:0;font-family:var(--font-press-start),monospace;font-size:clamp(15px,2.2vw,24px);color:#fb8c2e;text-shadow:3px 3px 0 #7a2e0a;opacity:0;white-space:nowrap;will-change:transform,opacity")} />
-        <div style={s("position:absolute;right:clamp(16px,5vw,48px);bottom:clamp(16px,4vh,30px);font-family:var(--font-press-start),monospace;font-size:11px;color:#5b5b6b;letter-spacing:.1em")}>PTS <span id="hs-ptsval" style={s("color:#fb8c2e")}>000</span></div>
+        <div id="hs-pop" style={s("position:absolute;left:0;top:0;font-family:var(--font-pixel);font-size:clamp(15px,2.2vw,24px);color:#fb8c2e;text-shadow:3px 3px 0 #7a2e0a;opacity:0;white-space:nowrap;will-change:transform,opacity")} />
+        <div style={s("position:absolute;right:clamp(16px,5vw,48px);bottom:clamp(16px,4vh,30px);font-family:var(--font-pixel);font-size:11px;color:#5b5b6b;letter-spacing:.1em")}>PTS <span id="hs-ptsval" style={s("color:#fb8c2e")}>000</span></div>
       </div>
 
-      <div style={s("position:absolute;bottom:18px;left:0;right:0;text-align:center;z-index:6;font-family:var(--font-press-start),monospace;font-size:8px;color:#46465a;letter-spacing:.12em;animation:hl-cue 1.6s ease-in-out infinite")}>&#9660; SCROLL</div>
+      <div style={s("position:absolute;bottom:18px;left:0;right:0;text-align:center;z-index:6;font-family:var(--font-pixel);font-size:8px;color:#46465a;letter-spacing:.12em;animation:hl-cue 1.6s ease-in-out infinite")}>&#9660; SCROLL</div>
     </section>
   );
 }

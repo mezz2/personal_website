@@ -1,21 +1,38 @@
 @import "tailwindcss";
-
-:root {
-  --paper: #f4f1ea;
-  --ink: #171717;
-  --warm: #c1450f;
-  --background: var(--paper);
-  --foreground: var(--ink);
-}
+@import "../styles/tokens/colors.css";
+@import "../styles/tokens/typography.css";
+@import "../styles/tokens/spacing.css";
+@import "../styles/tokens/effects.css";
 
 body {
   background: var(--background);
   color: var(--foreground);
   overflow-x: hidden;
+  font-family: var(--font-serif);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 * {
   box-sizing: border-box;
+}
+
+::selection {
+  background: var(--blue-soft);
+  color: var(--ink-deep);
+}
+
+:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-offset);
+}
+
+.ds-btn--primary:hover:not([aria-disabled="true"]):not(:disabled) {
+  background: var(--blue-strong) !important;
+}
+.ds-btn--secondary:hover:not([aria-disabled="true"]):not(:disabled),
+.ds-btn--ghost:hover:not([aria-disabled="true"]):not(:disabled) {
+  background: var(--blue-veil) !important;
 }
 
 .scrollbar-hide::-webkit-scrollbar {
@@ -33,8 +50,9 @@ body {
   flex-shrink: 0;
   overflow: hidden;
   cursor: pointer;
-  transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  border-radius: 2px 2px 0 0;
+  transition: width 0.35s var(--ease-standard);
+  border-radius: var(--radius-xs) var(--radius-xs) 0 0;
+  box-shadow: 0 4px 10px -4px rgba(0, 0, 0, 0.4);
 }
 
 .book-item:hover {
@@ -62,7 +80,6 @@ body {
   object-fit: cover;
 }
 
-/* ---- Landing motifs ---- */
 @keyframes landing-blink {
   50% {
     opacity: 0;
@@ -163,7 +180,7 @@ body {
 }
 .landing-b1,
 .landing-b2 {
-  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: transform 0.35s var(--ease-out);
   transform-box: fill-box;
   transform-origin: center;
 }
@@ -194,7 +211,6 @@ body {
   animation: landing-travel 3.8s cubic-bezier(0.45, 0, 0.3, 1) infinite;
 }
 
-/* ---- Hub motifs ---- */
 @keyframes hub-readline {
   0%,
   10% {
@@ -231,7 +247,7 @@ body {
   position: absolute;
   inset: 0;
   width: 0;
-  background: oklch(0.58 0.11 245 / 0.7);
+  background: color-mix(in srgb, var(--blue) 70%, transparent);
   animation: hub-readline 5.4s ease-in-out infinite;
 }
 .hub-readline:nth-child(1)::after {
@@ -257,7 +273,7 @@ body {
   width: 8px;
   height: 14px;
   margin-left: 4px;
-  background: oklch(0.58 0.11 245);
+  background: var(--blue);
   animation: hub-blink 1s step-end infinite;
 }
 .hub-spine {
@@ -267,7 +283,6 @@ body {
   animation: hub-spinepulse 3.8s ease-in-out infinite;
 }
 
-/* ---- Hoops Lab keyframes ---- */
 @keyframes hl-scan {
   0% {
     transform: translateY(-130%);
@@ -386,8 +401,8 @@ body {
     color 0.15s ease;
 }
 .hl-btn-ghost:hover {
-  background: #fb8c2e;
-  color: #0a0a10 !important;
+  background: var(--hoops-orange-lit);
+  color: var(--hoops-court-night) !important;
 }
 .hl-footer-link {
   transition: background 0.15s ease;
@@ -399,11 +414,13 @@ body {
   transition:
     opacity 0.7s ease,
     transform 0.7s ease,
-    box-shadow 0.3s ease;
+    box-shadow 0.3s ease,
+    border-color 0.2s ease;
 }
 .hl-card:hover {
   transform: translateY(-4px) !important;
-  box-shadow: 0 24px 46px -30px rgba(80, 60, 20, 0.55) !important;
+  box-shadow: var(--shadow-card-lift) !important;
+  border-color: var(--blue-line) !important;
 }
 
 @keyframes books-mote {

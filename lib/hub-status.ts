@@ -8,5 +8,6 @@ export function booksStatusLabel(count: number): string {
 }
 
 export function projectsCapacityLabel(liveCount: number): string {
-  return `${liveCount} LIVE · ROOM FOR MORE`;
+  const labs = liveCount === 1 ? "lab" : "labs";
+  return `${liveCount} ${labs} live · more in the works`;
 }
