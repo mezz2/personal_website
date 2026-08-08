@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Kicker, StatusDot } from "@/components/ui";
 import { books } from "@/data/books";
 import { blogStatusLabel, booksStatusLabel } from "@/lib/hub-status";
 
@@ -11,9 +12,9 @@ export const metadata: Metadata = {
 const BLOG_POST_COUNT = 0;
 const SPINES = [
   { height: 78, color: "#2d4a6e", delay: "0s" },
-  { height: 96, color: "#6b2737", delay: "0.75s" },
+  { height: 96, color: "#3f78bd", delay: "0.75s" },
   { height: 72, color: "#4a5a2d", delay: "1.5s" },
-  { height: 90, color: "#c1450f", delay: "2.25s" },
+  { height: 90, color: "#24507b", delay: "2.25s" },
   { height: 84, color: "#2d6b6b", delay: "3s" },
 ];
 
@@ -27,25 +28,21 @@ export default function WordsHubPage() {
       <section className="grid min-h-[calc(100vh-57px)] grid-cols-1 min-[800px]:grid-cols-2">
         <Link
           href="/blog"
-          className="group flex min-h-[calc(100vh-57px)] flex-col justify-between border-b border-black/12 px-[clamp(28px,4vw,52px)] py-[clamp(40px,6vw,72px)] transition-colors duration-200 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[var(--ink)] min-[800px]:min-h-[calc(100vh-57px)] min-[800px]:border-b-0 min-[800px]:border-r"
+          className="group flex min-h-[calc(100vh-57px)] flex-col justify-between border-b border-[var(--line)] px-[clamp(28px,4vw,52px)] py-[clamp(40px,6vw,72px)] transition-colors duration-200 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[var(--blue)] min-[800px]:min-h-[calc(100vh-57px)] min-[800px]:border-b-0 min-[800px]:border-r"
         >
           <div>
-            <p className="mb-3 flex items-center gap-2.5 font-[family-name:var(--font-mono)] text-[11px] uppercase tracking-[0.16em] text-black/28 before:block before:h-px before:w-4 before:bg-current">
+            <Kicker tone="muted" rule={false}>
               Words / 01
-            </p>
-            <h2 className="m-0 font-[family-name:var(--font-newsreader)] text-[clamp(56px,9vw,104px)] font-normal leading-[0.9] tracking-[-0.02em] text-[var(--ink)]">
+            </Kicker>
+            <h2 className="m-0 mt-2.5 font-[family-name:var(--font-serif)] text-[clamp(56px,9vw,104px)] font-normal leading-[0.9] tracking-[-0.02em] text-[var(--ink)]">
               Blog
             </h2>
             <p className="mt-4 max-w-[28ch] font-[family-name:var(--font-mono)] text-[13px] leading-[1.55] text-black/45">
               Long-form notes live here.
             </p>
-            <p className="mt-[0.9rem] flex items-center gap-[0.65rem] font-[family-name:var(--font-mono)] text-[11px] uppercase tracking-[0.14em] text-black/28">
-              <span
-                className={`h-[7px] w-[7px] shrink-0 rounded-full ${
-                  blogEmpty ? "bg-[var(--warm)]" : "bg-[oklch(0.58_0.11_245)]"
-                }`}
-              />
-              {blogStatusLabel(BLOG_POST_COUNT)}
+            <p className="mt-[0.9rem] flex items-center gap-[0.65rem] font-[family-name:var(--font-mono)] text-[11px] tracking-[var(--ls-label)] text-black/40">
+              <StatusDot status={blogEmpty ? "idle" : "live"} />
+              {blogEmpty ? "Coming soon" : blogStatusLabel(BLOG_POST_COUNT)}
             </p>
           </div>
 
@@ -63,7 +60,7 @@ export default function WordsHubPage() {
               </div>
               {blogEmpty ? <span className="hub-caret" /> : null}
             </div>
-            <span className="mt-5 inline-flex border-b border-[var(--ink)] pb-[3px] font-[family-name:var(--font-mono)] text-[12px] uppercase tracking-[0.12em] transition-colors group-hover:border-[oklch(0.58_0.11_245)] group-hover:text-[oklch(0.58_0.11_245)]">
+            <span className="mt-5 inline-flex border-b border-[var(--ink)] pb-[3px] font-[family-name:var(--font-mono)] text-[12px] tracking-[var(--ls-label)] transition-colors group-hover:border-[var(--blue)] group-hover:text-[var(--blue)]">
               Enter blog →
             </span>
           </div>
@@ -71,20 +68,20 @@ export default function WordsHubPage() {
 
         <Link
           href="/books"
-          className="group flex min-h-[calc(100vh-57px)] flex-col justify-between px-[clamp(28px,4vw,52px)] py-[clamp(40px,6vw,72px)] transition-colors duration-200 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[var(--ink)]"
+          className="group flex min-h-[calc(100vh-57px)] flex-col justify-between px-[clamp(28px,4vw,52px)] py-[clamp(40px,6vw,72px)] transition-colors duration-200 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[var(--blue)]"
         >
           <div>
-            <p className="mb-3 flex items-center gap-2.5 font-[family-name:var(--font-mono)] text-[11px] uppercase tracking-[0.16em] text-black/28 before:block before:h-px before:w-4 before:bg-current">
+            <Kicker tone="muted" rule={false}>
               Words / 02
-            </p>
-            <h2 className="m-0 font-[family-name:var(--font-newsreader)] text-[clamp(56px,9vw,104px)] font-normal leading-[0.9] tracking-[-0.02em] text-[var(--ink)]">
+            </Kicker>
+            <h2 className="m-0 mt-2.5 font-[family-name:var(--font-serif)] text-[clamp(56px,9vw,104px)] font-normal leading-[0.9] tracking-[-0.02em] text-[var(--ink)]">
               Books
             </h2>
             <p className="mt-4 max-w-[28ch] font-[family-name:var(--font-mono)] text-[13px] leading-[1.55] text-black/45">
               Whatever I&apos;m reading, have read, or keep meaning to get to.
             </p>
-            <p className="mt-[0.9rem] flex items-center gap-[0.65rem] font-[family-name:var(--font-mono)] text-[11px] uppercase tracking-[0.14em] text-black/28">
-              <span className="h-[7px] w-[7px] shrink-0 rounded-full bg-[oklch(0.58_0.11_245)]" />
+            <p className="mt-[0.9rem] flex items-center gap-[0.65rem] font-[family-name:var(--font-mono)] text-[11px] tracking-[var(--ls-label)] text-black/40">
+              <StatusDot status="live" />
               {booksStatusLabel(shelfCount)}
             </p>
           </div>
@@ -103,7 +100,7 @@ export default function WordsHubPage() {
                 />
               ))}
             </div>
-            <span className="mt-5 inline-flex border-b border-[var(--ink)] pb-[3px] font-[family-name:var(--font-mono)] text-[12px] uppercase tracking-[0.12em] transition-colors group-hover:border-[oklch(0.58_0.11_245)] group-hover:text-[oklch(0.58_0.11_245)]">
+            <span className="mt-5 inline-flex border-b border-[var(--ink)] pb-[3px] font-[family-name:var(--font-mono)] text-[12px] tracking-[var(--ls-label)] transition-colors group-hover:border-[var(--blue)] group-hover:text-[var(--blue)]">
               Open shelf →
             </span>
           </div>

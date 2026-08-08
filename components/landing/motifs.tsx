@@ -9,7 +9,7 @@ export function AboutMotif() {
       aria-hidden
     >
       <g className="landing-spin origin-[100px_66px]">
-        <g stroke="oklch(0.58 0.11 245)" strokeWidth="2.5">
+        <g stroke="var(--blue)" strokeWidth="2.5">
           <line className="landing-ln" x1="100" y1="66" x2="30" y2="22" />
           <line className="landing-ln" x1="100" y1="66" x2="172" y2="30" />
           <line className="landing-ln" x1="100" y1="66" x2="112" y2="116" />
@@ -19,24 +19,24 @@ export function AboutMotif() {
           cx="30"
           cy="22"
           r="6"
-          fill="oklch(0.58 0.11 245)"
+          fill="var(--blue)"
         />
         <circle
           className="landing-nd landing-nd-delay-1 origin-[172px_30px]"
           cx="172"
           cy="30"
           r="6"
-          fill="oklch(0.58 0.11 245)"
+          fill="var(--blue)"
         />
         <circle
           className="landing-nd landing-nd-delay-2 origin-[112px_116px]"
           cx="112"
           cy="116"
           r="6"
-          fill="oklch(0.58 0.11 245)"
+          fill="var(--blue)"
         />
       </g>
-      <circle cx="100" cy="66" r="12" fill="oklch(0.58 0.11 245)" />
+      <circle cx="100" cy="66" r="12" fill="var(--blue)" />
     </svg>
   );
 }
@@ -51,7 +51,7 @@ export function ProjectsMotif() {
       className="max-h-[180px]"
       aria-hidden
     >
-      <g fill="oklch(0.58 0.11 245)">
+      <g fill="var(--blue)">
         <rect
           className="landing-boxcycle"
           x="66"
@@ -102,11 +102,11 @@ export function WordsMotif() {
               style={{ width: bar.width }}
             >
               <div
-                className="landing-readline absolute inset-0 w-0 bg-[oklch(0.58_0.11_245)]"
+                className="landing-readline absolute inset-0 w-0 bg-[var(--blue)]"
                 style={{ animationDelay: bar.delay }}
               />
             </div>
-            <div className="landing-blink h-[22px] w-[3px] bg-[oklch(0.58_0.11_245)]" />
+            <div className="landing-blink h-[22px] w-[3px] bg-[var(--blue)]" />
           </div>
         ) : (
           <div
@@ -115,7 +115,7 @@ export function WordsMotif() {
             style={{ width: bar.width }}
           >
             <div
-              className="landing-readline absolute inset-0 w-0 bg-[oklch(0.58_0.11_245)]"
+              className="landing-readline absolute inset-0 w-0 bg-[var(--blue)]"
               style={{ animationDelay: bar.delay }}
             />
           </div>
@@ -138,7 +138,7 @@ export function SomedayMotif() {
       <path
         d="M22 112 Q104 104 168 30"
         fill="none"
-        stroke="oklch(0.58 0.11 245)"
+        stroke="var(--blue)"
         strokeWidth="2.5"
         strokeDasharray="6 6"
         opacity="0.5"
@@ -146,13 +146,9 @@ export function SomedayMotif() {
       <path
         className="landing-starpulse origin-[168px_30px]"
         d="M168 16 l4 10 10 4 -10 4 -4 10 -4 -10 -10 -4 10 -4 z"
-        fill="oklch(0.6 0.11 245)"
+        fill="var(--blue)"
       />
-      <circle
-        className="landing-travel"
-        r="6.5"
-        fill="oklch(0.6 0.11 245)"
-      />
+      <circle className="landing-travel" r="6.5" fill="var(--blue)" />
     </svg>
   );
 }

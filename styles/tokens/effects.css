@@ -1,0 +1,31 @@
+:root {
+  --radius-0: 0;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-xl: 14px;
+  --radius-pill: 40px;
+
+  --border-hair: 1px solid var(--line);
+  --border-card: 1px solid var(--line-warm);
+  --border-accent: 1px solid var(--blue-line);
+
+  --shadow-card: 0 14px 36px -32px rgba(80, 60, 20, 0.5);
+  --shadow-card-lift: 0 24px 46px -30px rgba(80, 60, 20, 0.55);
+  --shadow-panel: 0 18px 44px -30px rgba(80, 60, 20, 0.55);
+  --shadow-media: inset 0 0 0 1px rgba(255, 255, 255, 0.1),
+    inset 0 0 70px rgba(0, 0, 0, 0.42);
+
+  --rail-accent: linear-gradient(90deg, var(--blue), var(--blue-strong));
+
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast: 0.15s;
+  --dur: 0.2s;
+  --dur-slow: 0.35s;
+  --reveal: 0.7s;
+
+  --focus-outline: 2px solid var(--blue);
+  --focus-offset: 2px;
+}

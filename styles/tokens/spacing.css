@@ -1,0 +1,23 @@
+:root {
+  --space-0: 0;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  --pad-section: clamp(72px, 11vw, 140px);
+  --pad-gutter: clamp(20px, 5vw, 64px);
+  --pad-card: clamp(24px, 3.5vw, 40px);
+
+  --measure: 66ch;
+  --content-max: 1180px;
+  --content-narrow: 780px;
+}

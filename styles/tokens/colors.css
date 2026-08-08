@@ -1,0 +1,51 @@
+/* Orange tokens are scoped to the Hoops Lab arcade hero/footer only. */
+:root {
+  --paper: #f4f1ea;
+  --paper-warm: #faf6ee;
+  --paper-deep: #f3ead9;
+  --surface-card: #ffffff;
+  --surface-sunken: #efebe3;
+  --surface-feature: #16140f;
+
+  --ink: #171717;
+  --ink-deep: #16140f;
+  --ink-body: #4a463d;
+  --ink-muted: #6a6456;
+  --ink-faint: #8a8478;
+  --ink-ghost: #a89e8a;
+  --on-dark: #f3ead9;
+  --on-dark-muted: #bdb4a0;
+
+  --blue: #3f78bd;
+  --blue-strong: #2f6296;
+  --blue-deep: #24507b;
+  --blue-soft: #e7eff8;
+  --blue-line: rgba(63, 120, 189, 0.35);
+  --blue-veil: rgba(63, 120, 189, 0.08);
+
+  --line: rgba(0, 0, 0, 0.12);
+  --line-strong: rgba(0, 0, 0, 0.18);
+  --line-warm: #ece3d0;
+  --line-warm-soft: #e8dfcc;
+
+  --viz-cold: #2f6fb0;
+  --viz-mid: #f4efe6;
+  --viz-hot: #e23b2e;
+
+  --hoops-orange: #f97316;
+  --hoops-orange-lit: #fb8c2e;
+  --hoops-jersey: #3b82f6;
+  --hoops-court-night: #0a0a10;
+
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --accent: var(--blue);
+  --accent-hover: var(--blue-strong);
+  --text-heading: var(--ink-deep);
+  --text-body: var(--ink-body);
+  --text-label: var(--ink-ghost);
+  --border-default: var(--line);
+  --focus-ring: var(--blue);
+  --status-live: var(--blue);
+  --status-idle: var(--ink-ghost);
+}

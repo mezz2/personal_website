@@ -26,11 +26,11 @@ const TILES = [
 export default function LandingPage() {
   return (
     <main className="landing-shell min-h-screen grid grid-cols-1 min-[900px]:grid-cols-[1.05fr_1fr]">
-      <section className="flex flex-col justify-between px-[52px] py-[56px] max-[900px]:px-8 max-[900px]:py-10 border-b min-[900px]:border-b-0 min-[900px]:border-r border-black/12">
+      <section className="flex flex-col justify-between px-[52px] py-[56px] max-[900px]:px-8 max-[900px]:py-10 border-b min-[900px]:border-b-0 min-[900px]:border-r border-[var(--line)]">
         <span className="font-[family-name:var(--font-mono)] text-[13px] tracking-[0.05em] text-[var(--ink)]">
-          RILEY MEREDITH
+          Riley Meredith
         </span>
-        <h1 className="font-[family-name:var(--font-newsreader)] font-normal text-[clamp(30px,3.6vw,44px)] leading-[1.24] m-0 max-w-[11ch] text-balance text-[var(--ink)]">
+        <h1 className="font-[family-name:var(--font-serif)] font-normal text-[clamp(30px,3.6vw,44px)] leading-[1.24] m-0 max-w-[11ch] text-balance text-[var(--ink)]">
           A young <span className="whitespace-nowrap">20-something</span>{" "}
           navigating AI, personal&nbsp;finance, and&nbsp;entrepreneurship.
         </h1>
@@ -47,7 +47,7 @@ export default function LandingPage() {
           <Link
             key={href}
             href={href}
-            className={`landing-tile group flex flex-col bg-[var(--paper)] text-[var(--ink)] no-underline px-[26px] py-6 transition-colors duration-200 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[var(--ink)] ${
+            className={`landing-tile group flex flex-col bg-[var(--paper)] text-[var(--ink)] no-underline px-[26px] py-6 transition-colors duration-200 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[var(--blue)] ${
               react === "about"
                 ? "landing-tile-about"
                 : react === "projects"
@@ -58,7 +58,7 @@ export default function LandingPage() {
             <div className="flex flex-1 items-center justify-center min-h-0">
               <Motif />
             </div>
-            <span className="font-[family-name:var(--font-newsreader)] text-[30px] mt-1.5">
+            <span className="font-[family-name:var(--font-serif)] text-[30px] mt-1.5">
               {label}
             </span>
           </Link>
