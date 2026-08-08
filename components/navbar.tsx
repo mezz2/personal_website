@@ -1,178 +1,98 @@
-'use client';
+"use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import { resolveNavActive, type NavActive } from "@/lib/nav";
 
-const overlayLinkCls =
-  "font-mono text-gray-400 text-lg tracking-widest hover:text-white transition-colors py-3 block";
+const LINKS: { id: NavActive; href: string; label: string }[] = [
+  { id: "home", href: "/", label: "Riley Meredith" },
+  { id: "projects", href: "/projects", label: "Projects" },
+  { id: "words", href: "/words", label: "Words" },
+  { id: "someday", href: "/someday", label: "Someday" },
+  { id: "about", href: "/about", label: "About" },
+];
+
+function linkClass(active: boolean) {
+  return [
+    "font-[family-name:var(--font-mono)] text-[12px] tracking-[0.08em] transition-colors duration-200",
+    "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--ink)]",
+    active
+      ? "text-[var(--ink)]"
+      : "text-[rgba(0,0,0,0.28)] hover:text-[var(--warm)]",
+  ].join(" ");
+}
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const active = resolveNavActive(pathname);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [projectsOpen, setProjectsOpen] = useState(false);
-  const [wordsOpen, setWordsOpen] = useState(false);
 
-  const close = () => {
-    setMenuOpen(false);
-    setProjectsOpen(false);
-    setWordsOpen(false);
-  };
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
 
-  const linkCls =
-    "font-mono text-gray-400 text-sm tracking-widest font-normal hover:text-white transition-colors";
-
-  const dropdownItemCls =
-    "font-mono text-gray-400 text-sm tracking-widest font-normal hover:text-white transition-colors px-4 py-2 whitespace-nowrap block";
+  const close = () => setMenuOpen(false);
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center gap-8 px-6 py-4 bg-[#0a0a0a]/80 backdrop-blur-sm">
+      <nav className="sticky top-0 z-50 flex items-center gap-8 px-6 py-4 bg-[rgba(244,241,234,0.88)] backdrop-blur-[8px] border-b border-[rgba(0,0,0,0.12)]">
+        <div className="hidden sm:flex items-center gap-8">
+          {LINKS.map((link) => (
+            <Link
+              key={link.id}
+              href={link.href}
+              className={linkClass(active === link.id)}
+              aria-current={active === link.id ? "page" : undefined}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </div>
+
         <Link
           href="/"
           onClick={close}
-          className="font-mono text-white font-bold text-sm tracking-[0.25em] hover:text-orange-400 transition-colors"
+          className={`sm:hidden font-[family-name:var(--font-mono)] text-[13px] tracking-[0.05em] font-medium ${linkClass(active === "home")}`}
+          aria-current={active === "home" ? "page" : undefined}
         >
-          RILEY MEREDITH
+          Riley Meredith
         </Link>
 
-        {/* Desktop links */}
-        <div className="hidden sm:flex items-center gap-8">
-          <Link href="/about" className={linkCls}>
-            ABOUT
-          </Link>
-
-          <div className="group relative">
-            <span className={`${linkCls} cursor-default flex items-center gap-1`}>
-              PROJECTS
-              <svg className="w-2.5 h-2.5 opacity-50" viewBox="0 0 10 6" fill="currentColor">
-                <path d="M0 0l5 6 5-6z" />
-              </svg>
-            </span>
-            <div className="absolute top-full left-0 pt-3 hidden group-hover:block">
-              <div className="border border-white/10 bg-[#0a0a0a] py-1 flex flex-col">
-                <Link href="/hoops-lab" className={dropdownItemCls}>
-                  HOOPS LAB
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          <div className="group relative">
-            <span className={`${linkCls} cursor-default flex items-center gap-1`}>
-              WORDS
-              <svg className="w-2.5 h-2.5 opacity-50" viewBox="0 0 10 6" fill="currentColor">
-                <path d="M0 0l5 6 5-6z" />
-              </svg>
-            </span>
-            <div className="absolute top-full left-0 pt-3 hidden group-hover:block">
-              <div className="border border-white/10 bg-[#0a0a0a] py-1 flex flex-col">
-                <Link href="/blog" className={dropdownItemCls}>
-                  BLOG
-                </Link>
-                <Link href="/books" className={dropdownItemCls}>
-                  BOOKS
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          <Link href="/someday" className={linkCls}>
-            SOMEDAY
-          </Link>
-
-          <a
-            href="https://github.com/mezz2"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={linkCls}
-          >
-            GITHUB
-          </a>
-        </div>
-
-        {/* Hamburger button — mobile only */}
         <button
-          className="sm:hidden ml-auto font-mono text-gray-400 hover:text-white transition-colors"
+          type="button"
+          className="sm:hidden ml-auto font-[family-name:var(--font-mono)] text-[rgba(0,0,0,0.45)] hover:text-[var(--warm)] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--ink)]"
           onClick={() => setMenuOpen((v) => !v)}
-          aria-label="Toggle menu"
+          aria-expanded={menuOpen}
+          aria-controls="mobile-nav"
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
         >
           {menuOpen ? "✕" : "☰"}
         </button>
       </nav>
 
-      {/* Mobile full-screen overlay */}
       <div
-        className={`fixed inset-0 z-40 bg-[#0a0a0a] flex flex-col px-8 pt-24 pb-12 transition-opacity duration-300 sm:hidden ${
-          menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        id="mobile-nav"
+        className={`fixed inset-0 z-40 bg-[var(--paper)] flex flex-col px-8 pt-24 pb-12 gap-2 transition-opacity duration-300 sm:hidden ${
+          menuOpen
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
         }`}
       >
-        <Link href="/about" onClick={close} className={overlayLinkCls}>
-          ABOUT
-        </Link>
-
-        {/* PROJECTS accordion */}
-        <div>
-          <button
-            className="font-mono text-gray-400 text-lg tracking-widest hover:text-white transition-colors py-3 flex items-center gap-2 w-full text-left"
-            onClick={() => setProjectsOpen((v) => !v)}
+        {LINKS.map((link) => (
+          <Link
+            key={link.id}
+            href={link.href}
+            onClick={close}
+            className={`${linkClass(active === link.id)} text-lg py-3`}
+            aria-current={active === link.id ? "page" : undefined}
           >
-            PROJECTS
-            <svg
-              className={`w-3 h-3 opacity-50 transition-transform duration-200 ${projectsOpen ? "rotate-180" : ""}`}
-              viewBox="0 0 10 6"
-              fill="currentColor"
-            >
-              <path d="M0 0l5 6 5-6z" />
-            </svg>
-          </button>
-          {projectsOpen && (
-            <div className="pl-4 flex flex-col border-l border-white/10 mb-1">
-              <Link href="/hoops-lab" onClick={close} className="font-mono text-gray-500 text-base tracking-widest hover:text-white transition-colors py-2 block">
-                HOOPS LAB
-              </Link>
-            </div>
-          )}
-        </div>
-
-        {/* WORDS accordion */}
-        <div>
-          <button
-            className="font-mono text-gray-400 text-lg tracking-widest hover:text-white transition-colors py-3 flex items-center gap-2 w-full text-left"
-            onClick={() => setWordsOpen((v) => !v)}
-          >
-            WORDS
-            <svg
-              className={`w-3 h-3 opacity-50 transition-transform duration-200 ${wordsOpen ? "rotate-180" : ""}`}
-              viewBox="0 0 10 6"
-              fill="currentColor"
-            >
-              <path d="M0 0l5 6 5-6z" />
-            </svg>
-          </button>
-          {wordsOpen && (
-            <div className="pl-4 flex flex-col border-l border-white/10 mb-1">
-              <Link href="/blog" onClick={close} className="font-mono text-gray-500 text-base tracking-widest hover:text-white transition-colors py-2 block">
-                BLOG
-              </Link>
-              <Link href="/books" onClick={close} className="font-mono text-gray-500 text-base tracking-widest hover:text-white transition-colors py-2 block">
-                BOOKS
-              </Link>
-            </div>
-          )}
-        </div>
-
-        <Link href="/someday" onClick={close} className={overlayLinkCls}>
-          SOMEDAY
-        </Link>
-
-        <a
-          href="https://github.com/mezz2"
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={close}
-          className={overlayLinkCls}
-        >
-          GITHUB
-        </a>
+            {link.label}
+          </Link>
+        ))}
       </div>
     </>
   );

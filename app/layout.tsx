@@ -1,11 +1,19 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Press_Start_2P, Anton, IBM_Plex_Mono, IBM_Plex_Sans, Newsreader } from "next/font/google";
+import {
+  JetBrains_Mono,
+  Press_Start_2P,
+  Anton,
+  IBM_Plex_Mono,
+  IBM_Plex_Sans,
+  Newsreader,
+} from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/navbar";
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-mono",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
 });
 
 const pressStart2P = Press_Start_2P({
@@ -44,8 +52,12 @@ const newsreader = Newsreader({
 });
 
 export const metadata: Metadata = {
-  title: "Hoops Lab",
-  description: "Building data science skills through my passion for the NBA",
+  title: {
+    default: "Riley Meredith",
+    template: "%s · Riley Meredith",
+  },
+  description:
+    "A young 20-something navigating AI, personal finance, and entrepreneurship.",
 };
 
 export default function RootLayout({
@@ -54,9 +66,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistMono.variable} ${pressStart2P.variable} ${anton.variable} ${plexMono.variable} ${plexSans.variable} ${newsreader.variable} h-full`}>
-      <body className="min-h-full bg-[#0a0a0a] text-[#f3f4f6] flex flex-col font-[family-name:var(--font-geist-mono)]">
-        <Navbar />
+    <html
+      lang="en"
+      className={`${jetbrainsMono.variable} ${pressStart2P.variable} ${anton.variable} ${plexMono.variable} ${plexSans.variable} ${newsreader.variable} h-full`}
+    >
+      <body className="min-h-full flex flex-col bg-[var(--paper)] text-[var(--ink)] font-[family-name:var(--font-newsreader)]">
         {children}
       </body>
     </html>
