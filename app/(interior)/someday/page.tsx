@@ -10,10 +10,10 @@ const sizeClasses: Record<CardSize, string> = {
 
 export default function SomedayPage() {
   return (
-    <main className="min-h-screen px-6 pt-28 pb-20 max-w-5xl mx-auto">
+    <main className="min-h-screen px-6 pt-16 pb-20 max-w-5xl mx-auto bg-[#0a0a0a] text-[#f3f4f6]">
       <div className="mb-12">
         <p className="font-mono text-orange-400 text-xs tracking-[0.3em] mb-3">
-          // SOMEDAY SHELF
+          {"// SOMEDAY SHELF"}
         </p>
         <p className="font-mono text-gray-400 text-sm tracking-widest">
           Things I want to build, make, or survive one day.

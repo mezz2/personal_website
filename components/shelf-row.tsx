@@ -50,7 +50,7 @@ export default function ShelfRow({ label, books, onSelect }: Props) {
           ))}
           {books.length === 0 && (
             <p className="font-mono text-gray-700 text-xs tracking-widest pb-2">
-              // NOTHING HERE YET
+              {"// NOTHING HERE YET"}
             </p>
           )}
         </div>

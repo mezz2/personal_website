@@ -13,7 +13,7 @@ export default async function SomedayItemPage({ params }: { params: Promise<{ sl
   if (!item) notFound();
 
   return (
-    <main className="min-h-screen px-6 pt-28 pb-20 max-w-3xl mx-auto">
+    <main className="min-h-screen px-6 pt-16 pb-20 max-w-3xl mx-auto bg-[#0a0a0a] text-[#f3f4f6]">
       <Link
         href="/someday"
         className="font-mono text-gray-600 text-xs tracking-widest hover:text-gray-400 transition-colors mb-12 block"
@@ -36,7 +36,7 @@ export default async function SomedayItemPage({ params }: { params: Promise<{ sl
       </div>
 
       <p className="font-mono text-gray-600 text-xs tracking-widest">
-        // more to come
+        {"// more to come"}
       </p>
     </main>
   );
