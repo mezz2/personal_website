@@ -47,7 +47,7 @@ export const somedayItems: SomedayItem[] = [
   {
     slug: "placeholder-b",
     title: "More to come",
-    size: "small",
+    size: "wide",
     color: "#2f5f4a",
   },
 ];

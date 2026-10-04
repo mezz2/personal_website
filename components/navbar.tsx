@@ -13,13 +13,15 @@ const LINKS: { id: NavActive; href: string; label: string }[] = [
   { id: "about", href: "/about", label: "About" },
 ];
 
-function linkClass(active: boolean) {
+function linkClass(
+  active: boolean,
+  size = "text-[12px]",
+  idle = "text-[rgba(0,0,0,0.28)]",
+) {
   return [
-    "font-[family-name:var(--font-mono)] text-[12px] tracking-[var(--ls-label)] transition-colors duration-200",
+    `font-[family-name:var(--font-mono)] ${size} tracking-[var(--ls-label)] transition-colors duration-200`,
     "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--blue)]",
-    active
-      ? "text-[var(--ink)]"
-      : "text-[rgba(0,0,0,0.28)] hover:text-[var(--blue)]",
+    active ? "text-[var(--ink)]" : `${idle} hover:text-[var(--blue)]`,
   ].join(" ");
 }
 
@@ -39,7 +41,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="sticky top-0 z-50 flex items-center gap-8 px-6 py-4 bg-[rgba(244,241,234,0.88)] backdrop-blur-[8px] border-b border-[var(--line)]">
+      <nav className="sticky top-0 z-50 flex items-center gap-8 px-6 h-[var(--nav-h)] bg-[rgba(244,241,234,0.88)] backdrop-blur-[8px] border-b border-[var(--line)]">
         <div className="hidden sm:flex items-center gap-8">
           {LINKS.map((link) => (
             <Link
@@ -56,7 +58,7 @@ export default function Navbar() {
         <Link
           href="/"
           onClick={close}
-          className={`sm:hidden font-[family-name:var(--font-mono)] text-[13px] tracking-[var(--ls-label)] font-medium ${linkClass(active === "home")}`}
+          className={`sm:hidden font-medium ${linkClass(active === "home", "text-[13px]")}`}
           aria-current={active === "home" ? "page" : undefined}
         >
           Riley Meredith
@@ -64,7 +66,7 @@ export default function Navbar() {
 
         <button
           type="button"
-          className="sm:hidden ml-auto font-[family-name:var(--font-mono)] text-[rgba(0,0,0,0.45)] hover:text-[var(--blue)] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--blue)]"
+          className="sm:hidden ml-auto -mr-2.5 p-2.5 font-[family-name:var(--font-mono)] text-[rgba(0,0,0,0.45)] hover:text-[var(--blue)] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--blue)]"
           onClick={() => setMenuOpen((v) => !v)}
           aria-expanded={menuOpen}
           aria-controls="mobile-nav"
@@ -87,7 +89,7 @@ export default function Navbar() {
             key={link.id}
             href={link.href}
             onClick={close}
-            className={`${linkClass(active === link.id)} text-lg py-3`}
+            className={`${linkClass(active === link.id, "text-lg", "text-[var(--ink-muted)]")} py-3`}
             aria-current={active === link.id ? "page" : undefined}
           >
             {link.label}

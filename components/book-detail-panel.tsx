@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import type { Book } from "@/data/books";
 import { Badge } from "@/components/ui";
 
@@ -52,14 +52,17 @@ export default function BookDetailPanel({ book, onClose }: Props) {
               : "translate-y-full sm:translate-y-0 sm:translate-x-full"
           }`}
       >
-        {book ? <PanelContent book={book} onClose={onClose} /> : null}
+        {book ? (
+          <PanelContent key={book.id} book={book} onClose={onClose} />
+        ) : null}
       </aside>
     </>
   );
 }
 
 function PanelContent({ book, onClose }: { book: Book; onClose: () => void }) {
-  const coverUrl = `https://covers.openlibrary.org/b/isbn/${book.isbn}-L.jpg`;
+  const coverUrl = `https://covers.openlibrary.org/b/isbn/${book.isbn}-L.jpg?default=false`;
+  const [coverFailed, setCoverFailed] = useState(false);
 
   return (
     <div className="flex flex-col h-full overflow-y-auto">
@@ -70,17 +73,21 @@ function PanelContent({ book, onClose }: { book: Book; onClose: () => void }) {
           boxShadow: "var(--shadow-media)",
         }}
       >
-        <img
-          src={coverUrl}
-          alt={book.title}
-          className="absolute inset-0 w-full h-full object-cover"
-          onError={(e) => {
-            (e.target as HTMLImageElement).style.display = "none";
-          }}
-        />
-        <div className="relative z-[1] font-[family-name:var(--font-serif)] text-[26px] font-medium leading-[1.12] text-[rgba(255,247,235,0.97)] [text-shadow:0_1px_8px_rgba(0,0,0,0.35)]">
-          {book.title}
-        </div>
+        {coverFailed ? (
+          <div
+            aria-hidden
+            className="relative z-[1] font-[family-name:var(--font-serif)] text-[26px] font-medium leading-[1.12] text-[rgba(255,247,235,0.97)] [text-shadow:0_1px_8px_rgba(0,0,0,0.35)]"
+          >
+            {book.title}
+          </div>
+        ) : (
+          <img
+            src={coverUrl}
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover"
+            onError={() => setCoverFailed(true)}
+          />
+        )}
         <button
           type="button"
           onClick={onClose}
@@ -91,13 +98,21 @@ function PanelContent({ book, onClose }: { book: Book; onClose: () => void }) {
       </div>
 
       <div className="p-[26px] flex flex-col gap-[18px] flex-1">
-        <Badge status={book.status === "want" ? "idle" : "live"}>
+        <Badge
+          status={book.status === "want" ? "idle" : "live"}
+          className="self-start"
+        >
           {statusLabel(book.status)}
         </Badge>
 
-        <p className="m-0 font-[family-name:var(--font-mono)] text-[13px] tracking-[var(--ls-label)] text-[var(--ink-muted)]">
-          {book.author}
-        </p>
+        <div>
+          <h2 className="m-0 font-[family-name:var(--font-serif)] text-[24px] font-normal leading-[1.15] text-[var(--ink)]">
+            {book.title}
+          </h2>
+          <p className="m-0 mt-1.5 font-[family-name:var(--font-mono)] text-[13px] tracking-[var(--ls-label)] text-[var(--ink-muted)]">
+            {book.author}
+          </p>
+        </div>
 
         {book.rating !== undefined ? (
           <div className="flex gap-1">

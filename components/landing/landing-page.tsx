@@ -55,7 +55,7 @@ export default function LandingPage() {
                   : ""
             }`}
           >
-            <div className="flex flex-1 items-center justify-center min-h-0">
+            <div className="flex flex-1 items-center justify-center min-h-0 max-[560px]:flex-none max-[560px]:h-[200px]">
               <Motif />
             </div>
             <span className="font-[family-name:var(--font-serif)] text-[30px] mt-1.5">

@@ -36,7 +36,7 @@ export const books: Book[] = [
     id: 'moneyball',
     title: 'Moneyball',
     author: 'Michael Lewis',
-    isbn: '9780393057651',
+    isbn: '9780393324815',
     status: 'finished',
     featured: true,
     rating: 5,

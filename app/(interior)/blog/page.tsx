@@ -1,4 +1,10 @@
+import type { Metadata } from "next";
 import { Kicker } from "@/components/ui";
+
+export const metadata: Metadata = {
+  title: "Blog",
+  description: "Long-form notes.",
+};
 
 export default function Blog() {
   return (

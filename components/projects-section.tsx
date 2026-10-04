@@ -13,7 +13,7 @@ type Project = {
   question: string;
   desc: string;
   meta: Meta[];
-  links: { label: string; soon: boolean }[];
+  links: { label: string; href?: string }[];
 };
 
 const PROJECTS: Project[] = [
@@ -31,10 +31,7 @@ const PROJECTS: Project[] = [
       { k: "Metric", v: "Log loss + calibration" },
       { k: "Target", v: "4 weeks to v1" },
     ],
-    links: [
-      { label: "Notebook", soon: false },
-      { label: "Write-up", soon: true },
-    ],
+    links: [{ label: "Notebook" }, { label: "Write-up" }],
   },
   {
     n: "02",
@@ -49,7 +46,7 @@ const PROJECTS: Project[] = [
       { k: "Builds on", v: "01 · Shot Quality" },
       { k: "Inputs", v: "Pace, ORtg/DRtg, rest, travel" },
     ],
-    links: [{ label: "Details", soon: true }],
+    links: [{ label: "Details" }],
   },
   {
     n: "03",
@@ -63,7 +60,7 @@ const PROJECTS: Project[] = [
       { k: "Builds on", v: "01 · production signal" },
       { k: "Approach", v: "WAR-style, from scratch" },
     ],
-    links: [{ label: "Details", soon: true }],
+    links: [{ label: "Details" }],
   },
   {
     n: "04",
@@ -78,7 +75,7 @@ const PROJECTS: Project[] = [
       { k: "Method", v: "Unsupervised clustering" },
       { k: "Feeds", v: "02 · 03" },
     ],
-    links: [{ label: "Details", soon: true }],
+    links: [{ label: "Details" }],
   },
   {
     n: "05",
@@ -93,7 +90,7 @@ const PROJECTS: Project[] = [
       { k: "Requires", v: "Infra from 01–04" },
       { k: "Type", v: "Projection model" },
     ],
-    links: [{ label: "Details", soon: true }],
+    links: [{ label: "Details" }],
   },
 ];
 
@@ -206,13 +203,13 @@ function ShotChart() {
         strokeWidth={2}
       />
       <path
-        d="M 22 460 L 22 352 A 232 232 0 0 0 478 352 L 478 460"
+        d="M 22 460 L 22 352 A 232 232 0 0 1 478 352 L 478 460"
         fill="none"
         stroke={cs}
         strokeWidth={2}
       />
       <path
-        d="M 210 413 A 40 40 0 0 0 290 413"
+        d="M 210 413 A 40 40 0 0 1 290 413"
         fill="none"
         stroke={cs}
         strokeWidth={1.5}
@@ -316,17 +313,17 @@ export default function ProjectsSection() {
             </div>
             <div className="flex gap-[18px] flex-wrap mt-[22px] items-center">
               {featured.links.map((l) =>
-                l.soon ? (
+                l.href ? (
+                  <TextLink key={l.label} href={l.href} arrow>
+                    {l.label}
+                  </TextLink>
+                ) : (
                   <span
                     key={l.label}
                     className="font-[family-name:var(--font-mono)] text-[13px] text-[var(--ink-ghost)]"
                   >
                     {l.label} · coming soon
                   </span>
-                ) : (
-                  <TextLink key={l.label} href="#" arrow>
-                    {l.label}
-                  </TextLink>
                 ),
               )}
             </div>
@@ -429,7 +426,7 @@ export default function ProjectsSection() {
             Pulled out during planning — they didn&apos;t fit neatly into the
             five projects, but they&apos;re too good to lose.
           </p>
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-3.5 mt-[26px]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mt-[26px]">
             {BACKLOG.map((q) => (
               <div
                 key={q}

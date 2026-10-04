@@ -1,11 +1,12 @@
 export function AboutMotif() {
+  // viewBox spans the arms' full rotation (r≈95 incl. hover-scaled nodes) so the SVG never clips them.
   return (
     <svg
       width="100%"
       height="100%"
-      viewBox="0 0 200 130"
+      viewBox="0 -30 200 192"
       preserveAspectRatio="xMidYMid meet"
-      className="max-h-[180px]"
+      className="max-h-[250px]"
       aria-hidden
     >
       <g className="landing-spin origin-[100px_66px]">
@@ -42,11 +43,12 @@ export function AboutMotif() {
 }
 
 export function ProjectsMotif() {
+  // Top padding in the viewBox leaves room for the hover lift on the top box.
   return (
     <svg
       width="100%"
       height="100%"
-      viewBox="0 0 200 130"
+      viewBox="0 -10 200 140"
       preserveAspectRatio="xMidYMid meet"
       className="max-h-[180px]"
       aria-hidden

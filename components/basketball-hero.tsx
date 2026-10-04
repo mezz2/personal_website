@@ -207,7 +207,7 @@ export default function BasketballHero() {
   }, []);
 
   return (
-    <section ref={rootRef} style={s("position:relative;min-height:100vh;background:radial-gradient(125% 90% at 50% -8%,#191922 0%,#0a0a10 60%,#06060a 100%);overflow:hidden;display:flex;flex-direction:column;font-family:var(--font-serif)")}>
+    <section ref={rootRef} style={s("position:relative;min-height:calc(100svh - var(--nav-h));background:radial-gradient(125% 90% at 50% -8%,#191922 0%,#0a0a10 60%,#06060a 100%);overflow:hidden;display:flex;flex-direction:column;font-family:var(--font-serif)")}>
       {/* arcade boot overlay */}
       <div id="boot" style={s("position:fixed;inset:0;z-index:90;background:#06060a;display:flex;flex-direction:column;align-items:center;justify-content:center;animation:hl-boot 2.7s ease-in forwards")}>
         <div style={s("position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(0,0,0,0) 0px,rgba(0,0,0,0) 2px,rgba(0,0,0,.5) 3px,rgba(0,0,0,0) 4px);pointer-events:none")} />

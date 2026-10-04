@@ -17,6 +17,8 @@
   --pad-gutter: clamp(20px, 5vw, 64px);
   --pad-card: clamp(24px, 3.5vw, 40px);
 
+  --nav-h: 56px;
+
   --measure: 66ch;
   --content-max: 1180px;
   --content-narrow: 780px;
