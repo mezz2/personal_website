@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { somedayItems, type CardSize } from "@/data/someday";
 import { Kicker } from "@/components/ui";
+
+export const metadata: Metadata = {
+  title: "Someday",
+  description: "Things I want to build, make, or survive one day.",
+};
 
 const sizeClasses: Record<CardSize, string> = {
   small: "col-span-1 row-span-1",
@@ -33,7 +39,7 @@ export default function SomedayPage() {
                 {item.title}
               </h2>
               {item.description ? (
-                <p className="font-[family-name:var(--font-mono)] text-white/60 text-[11px] mt-1.5 leading-relaxed m-0">
+                <p className="font-[family-name:var(--font-mono)] text-white/80 text-[11px] mt-1.5 leading-relaxed m-0">
                   {item.description}
                 </p>
               ) : null}

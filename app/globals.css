@@ -68,7 +68,7 @@ body {
   justify-content: center;
 }
 
-.book-item:hover .spine-overlay {
+.book-item:hover .book-cover + .spine-overlay {
   opacity: 0;
 }
 

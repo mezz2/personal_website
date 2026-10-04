@@ -42,7 +42,7 @@ export default function RootLayout({
       lang="en"
       className={`${jetbrainsMono.variable} ${pressStart2P.variable} ${newsreader.variable} h-full`}
     >
-      <body className="min-h-full flex flex-col bg-[var(--paper)] text-[var(--ink)] font-[family-name:var(--font-serif)] antialiased">
+      <body className="min-h-full bg-[var(--paper)] text-[var(--ink)] font-[family-name:var(--font-serif)] antialiased">
         {children}
       </body>
     </html>

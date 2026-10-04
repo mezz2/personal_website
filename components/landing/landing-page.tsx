@@ -7,20 +7,20 @@ import {
 } from "./motifs";
 
 const TILES = [
-  { href: "/about", label: "About", Motif: AboutMotif, react: "about" as const },
   {
     href: "/projects",
     label: "Projects",
     Motif: ProjectsMotif,
     react: "projects" as const,
   },
-  { href: "/words", label: "Words", Motif: WordsMotif, react: "none" as const },
   {
     href: "/someday",
     label: "Someday",
     Motif: SomedayMotif,
     react: "none" as const,
   },
+  { href: "/words", label: "Words", Motif: WordsMotif, react: "none" as const },
+  { href: "/about", label: "About", Motif: AboutMotif, react: "about" as const },
 ];
 
 export default function LandingPage() {
@@ -32,7 +32,7 @@ export default function LandingPage() {
         </span>
         <h1 className="font-[family-name:var(--font-serif)] font-normal text-[clamp(30px,3.6vw,44px)] leading-[1.24] m-0 max-w-[11ch] text-balance text-[var(--ink)]">
           A young <span className="whitespace-nowrap">20-something</span>{" "}
-          navigating AI, personal&nbsp;finance, and&nbsp;entrepreneurship.
+          interested&nbsp;in&nbsp;AI, personal&nbsp;finance, and&nbsp;entrepreneurship.
         </h1>
         <span className="font-[family-name:var(--font-mono)] text-[11px] text-black/35">
           rileymezz.com
@@ -41,7 +41,7 @@ export default function LandingPage() {
 
       <nav
         aria-label="Sections"
-        className="grid grid-cols-2 max-[560px]:grid-cols-1 gap-px bg-black/10 min-h-[50vh] min-[900px]:min-h-0"
+        className="grid grid-cols-2 min-[560px]:grid-rows-2 max-[560px]:grid-cols-1 gap-px bg-black/10 min-h-[50vh] min-[900px]:min-h-0"
       >
         {TILES.map(({ href, label, Motif, react }) => (
           <Link
@@ -55,7 +55,7 @@ export default function LandingPage() {
                   : ""
             }`}
           >
-            <div className="flex flex-1 items-center justify-center min-h-0">
+            <div className="flex flex-1 items-center justify-center min-h-0 max-[560px]:flex-none max-[560px]:h-[200px]">
               <Motif />
             </div>
             <span className="font-[family-name:var(--font-serif)] text-[30px] mt-1.5">

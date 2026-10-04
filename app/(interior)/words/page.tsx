@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Kicker, StatusDot } from "@/components/ui";
 import { books } from "@/data/books";
+import { getPosts } from "@/lib/blog";
 import { blogStatusLabel, booksStatusLabel } from "@/lib/hub-status";
 
 export const metadata: Metadata = {
@@ -9,7 +10,6 @@ export const metadata: Metadata = {
   description: "Long-form notes and the bookshelf.",
 };
 
-const BLOG_POST_COUNT = 0;
 const SPINES = [
   { height: 78, color: "#2d4a6e", delay: "0s" },
   { height: 96, color: "#3f78bd", delay: "0.75s" },
@@ -18,17 +18,18 @@ const SPINES = [
   { height: 84, color: "#2d6b6b", delay: "3s" },
 ];
 
-export default function WordsHubPage() {
-  const blogEmpty = BLOG_POST_COUNT <= 0;
+export default async function WordsHubPage() {
+  const postCount = (await getPosts()).length;
+  const blogEmpty = postCount <= 0;
   const shelfCount = books.length;
 
   return (
     <main>
       <h1 className="sr-only">Words</h1>
-      <section className="grid min-h-[calc(100vh-57px)] grid-cols-1 min-[800px]:grid-cols-2">
+      <section className="grid min-h-[calc(100svh-var(--nav-h))] grid-cols-1 min-[800px]:grid-cols-2">
         <Link
           href="/blog"
-          className="group flex min-h-[calc(100vh-57px)] flex-col justify-between border-b border-[var(--line)] px-[clamp(28px,4vw,52px)] py-[clamp(40px,6vw,72px)] transition-colors duration-200 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[var(--blue)] min-[800px]:min-h-[calc(100vh-57px)] min-[800px]:border-b-0 min-[800px]:border-r"
+          className="group flex min-h-[480px] flex-col justify-between border-b border-[var(--line)] px-[clamp(28px,4vw,52px)] py-[clamp(40px,6vw,72px)] transition-colors duration-200 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[var(--blue)] min-[800px]:min-h-[calc(100svh-var(--nav-h))] min-[800px]:border-b-0 min-[800px]:border-r"
         >
           <div>
             <Kicker tone="muted" rule={false}>
@@ -42,7 +43,7 @@ export default function WordsHubPage() {
             </p>
             <p className="mt-[0.9rem] flex items-center gap-[0.65rem] font-[family-name:var(--font-mono)] text-[11px] tracking-[var(--ls-label)] text-black/40">
               <StatusDot status={blogEmpty ? "idle" : "live"} />
-              {blogEmpty ? "Coming soon" : blogStatusLabel(BLOG_POST_COUNT)}
+              {blogEmpty ? "Coming soon" : blogStatusLabel(postCount)}
             </p>
           </div>
 
@@ -60,7 +61,7 @@ export default function WordsHubPage() {
               </div>
               {blogEmpty ? <span className="hub-caret" /> : null}
             </div>
-            <span className="mt-5 inline-flex border-b border-[var(--ink)] pb-[3px] font-[family-name:var(--font-mono)] text-[12px] tracking-[var(--ls-label)] transition-colors group-hover:border-[var(--blue)] group-hover:text-[var(--blue)]">
+            <span className="mt-5 self-start inline-flex border-b border-[var(--ink)] pb-[3px] font-[family-name:var(--font-mono)] text-[12px] tracking-[var(--ls-label)] transition-colors group-hover:border-[var(--blue)] group-hover:text-[var(--blue)]">
               Enter blog →
             </span>
           </div>
@@ -68,7 +69,7 @@ export default function WordsHubPage() {
 
         <Link
           href="/books"
-          className="group flex min-h-[calc(100vh-57px)] flex-col justify-between px-[clamp(28px,4vw,52px)] py-[clamp(40px,6vw,72px)] transition-colors duration-200 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[var(--blue)]"
+          className="group flex min-h-[480px] min-[800px]:min-h-[calc(100svh-var(--nav-h))] flex-col justify-between px-[clamp(28px,4vw,52px)] py-[clamp(40px,6vw,72px)] transition-colors duration-200 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[var(--blue)]"
         >
           <div>
             <Kicker tone="muted" rule={false}>
@@ -100,7 +101,7 @@ export default function WordsHubPage() {
                 />
               ))}
             </div>
-            <span className="mt-5 inline-flex border-b border-[var(--ink)] pb-[3px] font-[family-name:var(--font-mono)] text-[12px] tracking-[var(--ls-label)] transition-colors group-hover:border-[var(--blue)] group-hover:text-[var(--blue)]">
+            <span className="mt-5 self-start inline-flex border-b border-[var(--ink)] pb-[3px] font-[family-name:var(--font-mono)] text-[12px] tracking-[var(--ls-label)] transition-colors group-hover:border-[var(--blue)] group-hover:text-[var(--blue)]">
               Open shelf →
             </span>
           </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Book } from "@/data/books";
 
 interface Props {
@@ -25,43 +25,45 @@ export default function ShelfRow({ label, books, onSelect }: Props) {
         {label}
       </p>
 
-      <div className="group/shelf relative">
-        <div className="absolute left-0 top-0 bottom-4 w-12 z-10 flex items-center justify-start pointer-events-none">
-          <div className="absolute inset-0 bg-gradient-to-r from-[var(--paper)] to-transparent" />
-          <button
-            type="button"
-            onClick={() => scroll("left")}
-            className="relative pointer-events-auto hidden sm:block opacity-0 group-hover/shelf:opacity-100 transition-opacity duration-200 font-[family-name:var(--font-mono)] text-[var(--ink-faint)] hover:text-[var(--blue)] text-lg pl-1"
-            aria-label="Scroll left"
-          >
-            ‹
-          </button>
-        </div>
+      <div className="group/shelf">
+        <div className="relative">
+          <div className="absolute left-0 top-0 bottom-0 w-12 z-10 flex items-center justify-start pointer-events-none">
+            <div className="absolute inset-0 bg-gradient-to-r from-[var(--paper)] to-transparent" />
+            <button
+              type="button"
+              onClick={() => scroll("left")}
+              className="relative pointer-events-auto hidden sm:block opacity-0 group-hover/shelf:opacity-100 transition-opacity duration-200 font-[family-name:var(--font-mono)] text-[var(--ink-faint)] hover:text-[var(--blue)] text-lg pl-1"
+              aria-label="Scroll left"
+            >
+              ‹
+            </button>
+          </div>
 
-        <div
-          ref={scrollRef}
-          className="flex items-end gap-[3px] overflow-x-auto scrollbar-hide px-10 pb-0.5"
-        >
-          {books.map((book) => (
-            <BookSpine key={book.id} book={book} onSelect={onSelect} />
-          ))}
-          {books.length === 0 ? (
-            <p className="font-[family-name:var(--font-mono)] text-[var(--ink-ghost)] text-xs tracking-[var(--ls-label)] pb-2">
-              Nothing here yet
-            </p>
-          ) : null}
-        </div>
-
-        <div className="absolute right-0 top-0 bottom-4 w-12 z-10 flex items-center justify-end pointer-events-none">
-          <div className="absolute inset-0 bg-gradient-to-l from-[var(--paper)] to-transparent" />
-          <button
-            type="button"
-            onClick={() => scroll("right")}
-            className="relative pointer-events-auto hidden sm:block opacity-0 group-hover/shelf:opacity-100 transition-opacity duration-200 font-[family-name:var(--font-mono)] text-[var(--ink-faint)] hover:text-[var(--blue)] text-lg pr-1"
-            aria-label="Scroll right"
+          <div
+            ref={scrollRef}
+            className="flex items-end gap-[3px] overflow-x-auto scrollbar-hide px-10 pb-0.5"
           >
-            ›
-          </button>
+            {books.map((book) => (
+              <BookSpine key={book.id} book={book} onSelect={onSelect} />
+            ))}
+            {books.length === 0 ? (
+              <p className="font-[family-name:var(--font-mono)] text-[var(--ink-ghost)] text-xs tracking-[var(--ls-label)] pb-2">
+                Nothing here yet
+              </p>
+            ) : null}
+          </div>
+
+          <div className="absolute right-0 top-0 bottom-0 w-12 z-10 flex items-center justify-end pointer-events-none">
+            <div className="absolute inset-0 bg-gradient-to-l from-[var(--paper)] to-transparent" />
+            <button
+              type="button"
+              onClick={() => scroll("right")}
+              className="relative pointer-events-auto hidden sm:block opacity-0 group-hover/shelf:opacity-100 transition-opacity duration-200 font-[family-name:var(--font-mono)] text-[var(--ink-faint)] hover:text-[var(--blue)] text-lg pr-1"
+              aria-label="Scroll right"
+            >
+              ›
+            </button>
+          </div>
         </div>
 
         <div
@@ -85,7 +87,14 @@ function BookSpine({
   book: Book;
   onSelect: (b: Book) => void;
 }) {
-  const coverUrl = `https://covers.openlibrary.org/b/isbn/${book.isbn}-M.jpg`;
+  const coverUrl = `https://covers.openlibrary.org/b/isbn/${book.isbn}-M.jpg?default=false`;
+  const [coverFailed, setCoverFailed] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    const img = imgRef.current;
+    if (img?.complete && img.naturalWidth === 0) setCoverFailed(true);
+  }, []);
 
   return (
     <div
@@ -101,14 +110,15 @@ function BookSpine({
       tabIndex={0}
       title={book.title}
     >
-      <img
-        src={coverUrl}
-        alt={book.title}
-        className="book-cover"
-        onError={(e) => {
-          (e.target as HTMLImageElement).style.display = "none";
-        }}
-      />
+      {coverFailed ? null : (
+        <img
+          ref={imgRef}
+          src={coverUrl}
+          alt={book.title}
+          className="book-cover"
+          onError={() => setCoverFailed(true)}
+        />
+      )}
       <div className="spine-overlay" style={{ background: book.spineColor }}>
         <span
           className="font-[family-name:var(--font-mono)] text-white/75 text-[8px] tracking-wider overflow-hidden"

@@ -29,7 +29,7 @@ export default function ProjectsHubPage() {
       <div className="grid grid-cols-1 min-[700px]:grid-cols-2 gap-4 mt-9">
         <Link
           href={HOOPS.href}
-          className="group flex flex-col min-h-[420px] overflow-hidden border border-[var(--line)] bg-[var(--surface-card)] transition-[border-color,transform] duration-200 hover:-translate-y-0.5 hover:border-[var(--blue-line)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--blue)]"
+          className="group flex flex-col min-h-[420px] overflow-hidden rounded-[var(--radius-lg)] border border-[var(--line-warm)] bg-[var(--surface-card)] transition-[border-color,transform] duration-200 hover:-translate-y-0.5 hover:border-[var(--blue-line)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--blue)]"
         >
           <div
             className="relative min-h-[180px] overflow-hidden border-b border-[var(--line)] bg-[var(--surface-sunken)]"
@@ -40,7 +40,7 @@ export default function ProjectsHubPage() {
               style={{ background: "var(--rail-accent)" }}
             />
             <div className="absolute inset-0 grid place-items-center">
-              <div className="relative w-[55%] aspect-[1.05] border-2 border-[var(--blue-line)]">
+              <div className="relative h-[80%] aspect-[1.05] border-2 border-[var(--blue-line)]">
                 <div className="absolute left-1/2 top-[58%] w-[30%] aspect-square -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-[var(--blue-line)]" />
                 <div className="absolute bottom-[10%] left-1/2 h-[10px] w-[10px] -translate-x-1/2 rounded-full bg-[var(--blue)] shadow-[0_0_14px_rgba(63,120,189,0.5)]" />
               </div>

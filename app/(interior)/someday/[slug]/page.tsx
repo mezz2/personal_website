@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { somedayItems } from "@/data/someday";
@@ -5,6 +6,16 @@ import { Kicker } from "@/components/ui";
 
 export async function generateStaticParams() {
   return somedayItems.map((item) => ({ slug: item.slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const item = somedayItems.find((i) => i.slug === slug);
+  return item ? { title: item.title, description: item.description } : {};
 }
 
 export default async function SomedayItemPage({
@@ -34,7 +45,7 @@ export default async function SomedayItemPage({
           {item.title}
         </h1>
         {item.description ? (
-          <p className="font-[family-name:var(--font-mono)] text-white/60 text-sm mt-3 leading-relaxed m-0">
+          <p className="font-[family-name:var(--font-mono)] text-white/80 text-sm mt-3 leading-relaxed m-0">
             {item.description}
           </p>
         ) : null}

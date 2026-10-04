@@ -1,0 +1,48 @@
+export const metadata = {
+  title: "Sample post: how writing here works",
+  date: "2026-10-04",
+  summary:
+    "A draft that only shows up on the dev server. Copy it to start a new post.",
+  draft: true,
+};
+
+This post is a draft, so it only appears when you run the site locally. It never shows up on rileymezz.com. Copy this file to start a new post, then delete it once you've published something real.
+
+## Publishing a post
+
+1. Create a file in `content/blog/`. The file name becomes the URL, so `why-i-budget.mdx` lives at `/blog/why-i-budget`. Use lowercase words joined by hyphens.
+2. Start it with the `metadata` block you can see at the top of this file. `title` and `date` are required; `summary` shows on the blog list; `draft: true` keeps it off the live site.
+3. Write the rest in Markdown, preview it at `localhost:3211/blog`, then remove `draft` (or set it to `false`) and merge to `main`.
+
+The blog list, the post count on the Words page, and the browser tab title all update on their own.
+
+## What you can write
+
+Plain paragraphs, **bold**, _italics_, ~~strikethrough~~, and [links to other pages](/books) or [other sites](https://nextjs.org/docs/app/guides/mdx). Links to other sites open in a new tab.
+
+- Bulleted lists
+- Like this one
+
+### Smaller headings
+
+Use `##` for section headings and `###` below that. Skip the single `#`, because the title from `metadata` is already the page heading.
+
+> Block quotes are good for pulling out a line you want to land.
+
+Tables work too, which helps for numbers:
+
+| Shot zone | Attempts | Made |
+| --- | --- | --- |
+| At the rim | 120 | 78 |
+| Corner three | 45 | 17 |
+
+Code blocks keep their formatting:
+
+```python
+shots = df[df["distance"] < 10]
+print(shots["made"].mean())
+```
+
+---
+
+Images go in `public/blog/` and are written as `![description](/blog/picture.jpg)`.
