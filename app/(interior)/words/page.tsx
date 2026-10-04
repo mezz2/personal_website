@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Kicker, StatusDot } from "@/components/ui";
 import { books } from "@/data/books";
+import { getPosts } from "@/lib/blog";
 import { blogStatusLabel, booksStatusLabel } from "@/lib/hub-status";
 
 export const metadata: Metadata = {
@@ -9,7 +10,6 @@ export const metadata: Metadata = {
   description: "Long-form notes and the bookshelf.",
 };
 
-const BLOG_POST_COUNT = 0;
 const SPINES = [
   { height: 78, color: "#2d4a6e", delay: "0s" },
   { height: 96, color: "#3f78bd", delay: "0.75s" },
@@ -18,8 +18,9 @@ const SPINES = [
   { height: 84, color: "#2d6b6b", delay: "3s" },
 ];
 
-export default function WordsHubPage() {
-  const blogEmpty = BLOG_POST_COUNT <= 0;
+export default async function WordsHubPage() {
+  const postCount = (await getPosts()).length;
+  const blogEmpty = postCount <= 0;
   const shelfCount = books.length;
 
   return (
@@ -42,7 +43,7 @@ export default function WordsHubPage() {
             </p>
             <p className="mt-[0.9rem] flex items-center gap-[0.65rem] font-[family-name:var(--font-mono)] text-[11px] tracking-[var(--ls-label)] text-black/40">
               <StatusDot status={blogEmpty ? "idle" : "live"} />
-              {blogEmpty ? "Coming soon" : blogStatusLabel(BLOG_POST_COUNT)}
+              {blogEmpty ? "Coming soon" : blogStatusLabel(postCount)}
             </p>
           </div>
 
